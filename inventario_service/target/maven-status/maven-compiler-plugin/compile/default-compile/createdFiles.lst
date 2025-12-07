@@ -1,0 +1,8 @@
+mx\uam\model\dto\ProductoDTO.class
+mx\uam\model\dto\CategoriaDTO.class
+mx\uam\controller\ProductoController.class
+mx\uam\config\WebConfig.class
+mx\uam\controller\CategoriaController.class
+mx\uam\Main.class
+mx\uam\config\WebConfig$1.class
+mx\uam\config\SpaConfig.class

@@ -1,0 +1,106 @@
+<mat-card class="dashboard-card">
+  <mat-card-title class="title">DASHBOARD</mat-card-title>
+  <mat-card-content>
+    <button mat-flat-button color="primary" (click)="recargar()" style="margin-bottom:16px">Recargar</button>
+
+    <div *ngIf="loading" style="text-align:center;padding:32px">
+      <p>Cargando estadísticas...</p>
+    </div>
+
+    <div *ngIf="!loading && errorMsg" style="color:red;padding:16px;background:#ffe0e0;border-radius:4px">
+      {{ errorMsg }}
+    </div>
+
+    <div *ngIf="!loading && !errorMsg" style="display:grid;grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));gap:16px;margin-bottom:24px">
+      <!-- Tarjeta total productos -->
+      <mat-card style="background:#e3f2fd;border-left:4px solid #2196f3">
+        <mat-card-header>
+          <mat-card-title style="font-size:14px;color:#1976d2">Total Productos</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="font-size:32px;font-weight:bold;color:#1976d2">
+          {{ totalProductos }}
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Tarjeta total categorias -->
+      <mat-card style="background:#f3e5f5;border-left:4px solid #9c27b0">
+        <mat-card-header>
+          <mat-card-title style="font-size:14px;color:#7b1fa2">Total Categorías</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="font-size:32px;font-weight:bold;color:#7b1fa2">
+          {{ totalCategorias }}
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Tarjeta Total Registros -->
+      <mat-card style="background:#e8f5e9;border-left:4px solid #4caf50">
+        <mat-card-header>
+          <mat-card-title style="font-size:14px;color:#388e3c">Total Registros</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="font-size:32px;font-weight:bold;color:#388e3c">
+          {{ totalRegistros }}
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Tarjeta Ingresos Hoy -->
+      <mat-card style="background:#e0f2f1;border-left:4px solid #009688">
+        <mat-card-header>
+          <mat-card-title style="font-size:14px;color:#00796b">Ingresos Hoy</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="font-size:32px;font-weight:bold;color:#00796b">
+          {{ ingresosDia }}
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Tarjeta Salidas Hoy -->
+      <mat-card style="background:#fce4ec;border-left:4px solid #e91e63">
+        <mat-card-header>
+          <mat-card-title style="font-size:14px;color:#c2185b">Salidas Hoy</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="font-size:32px;font-weight:bold;color:#c2185b">
+          {{ salidasDia }}
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Tarjeta Stock Bajo -->
+      <mat-card style="background:#fff3e0;border-left:4px solid #ff9800">
+        <mat-card-header>
+          <mat-card-title style="font-size:14px;color:#e65100">Productos con Stock Bajo</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="font-size:32px;font-weight:bold;color:#e65100">
+          {{ productosStockBajo.length }}
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Tabla de Productos con Stock Bajo -->
+    <div *ngIf="!loading && !errorMsg && productosStockBajo.length > 0">
+      <mat-card style="margin-top:24px">
+        <mat-card-title>Productos con Stock Bajo</mat-card-title>
+        <mat-card-content>
+          <table mat-table [dataSource]="productosStockBajo" class="mat-elevation-z8" style="width:100%">
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef>ID</th>
+              <td mat-cell *matCellDef="let p">{{ p.id }}</td>
+            </ng-container>
+            <ng-container matColumnDef="nombre">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let p">{{ p.nombre }}</td>
+            </ng-container>
+            <ng-container matColumnDef="stock">
+              <th mat-header-cell *matHeaderCellDef>Stock</th>
+              <td mat-cell *matCellDef="let p" style="color:red;font-weight:bold">{{ p.stock }}</td>
+            </ng-container>
+            <ng-container matColumnDef="precio">
+              <th mat-header-cell *matHeaderCellDef>Precio</th>
+              <td mat-cell *matCellDef="let p">{{ p.precio | currency }}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="['id','nombre','stock','precio']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['id','nombre','stock','precio'];"></tr>
+          </table>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </mat-card-content>
+</mat-card>

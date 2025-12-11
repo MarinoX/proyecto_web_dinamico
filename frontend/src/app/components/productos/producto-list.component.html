@@ -1,0 +1,120 @@
+<mat-card class="productos-card">
+  <mat-card-title class="title">PRODUCTOS</mat-card-title>
+
+  <mat-card-content>
+    <div class="layout">
+
+      <!-- FILTROS -->
+      <aside class="filters-card">
+        <mat-card>
+          <mat-card-title class="filter-title">Filtros</mat-card-title>
+
+          <mat-card-content class="filters-grid">
+
+            <mat-form-field appearance="fill" class="full">
+              <mat-label>Categoría</mat-label>
+              <mat-select [value]="selectedCategoriaId" (selectionChange)="cambiarCategoria($event.value)">
+                <mat-option [value]="null">Todas</mat-option>
+                <mat-option *ngFor="let c of categorias" [value]="c.id">{{c.nombre}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Buscar</mat-label>
+              <input #searchInput matInput placeholder="Nombre"
+                     (input)="buscarPorNombre($any($event.target).value)">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Precio min</mat-label>
+              <input matInput type="number" min="0"
+                     (input)="cambiarPrecioMin($any($event.target).value)">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Precio max</mat-label>
+              <input matInput type="number" min="0"
+                     (input)="cambiarPrecioMax($any($event.target).value)">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full">
+              <mat-label>Stock min</mat-label>
+              <input matInput type="number" min="0"
+                     (input)="cambiarStockMin($any($event.target).value)">
+            </mat-form-field>
+
+            <div class="filter-buttons">
+              <button mat-flat-button color="primary" (click)="limpiarFiltros()">Limpiar</button>
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+      </aside>
+
+      <!-- TABLA -->
+      <section class="table-section">
+
+        <div class="top-action">
+          <button mat-flat-button color="primary" (click)="openCreate()">Nuevo producto</button>
+        </div>
+
+        <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 custom-table">
+
+          <!-- Columnas -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+            <td mat-cell *matCellDef="let e">{{e.id}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+            <td mat-cell *matCellDef="let e">{{e.nombre}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Descripción</th>
+            <td mat-cell *matCellDef="let e">{{e.descripcion}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="precio">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+            <td mat-cell *matCellDef="let e">{{e.precio | currency}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
+            <td mat-cell *matCellDef="let e">{{e.stock}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoría</th>
+            <td mat-cell *matCellDef="let e">{{e.categoria?.nombre}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let e">
+              <button mat-icon-button color="accent" title="Registrar Movimiento de stock" (click)="abrirRegistroStock(e)">
+                <mat-icon>add_circle</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" title="Editar producto" (click)="edit(e)">
+                <mat-icon>edit_note</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" title="Eliminar producto" (click)="delete(e.id)">
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons></mat-paginator>
+
+      </section>
+
+    </div>
+  </mat-card-content>
+</mat-card>

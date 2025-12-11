@@ -1,0 +1,119 @@
+/* CONTENEDOR PRINCIPAL*/
+.layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  margin-top: 16px;
+}
+
+.filters-card {
+  font-size: 0.8rem !important; 
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.filters-card mat-card {
+  padding: 16px !important;
+  border-radius: 14px !important;      
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12) !important;
+  border: 1px solid #e5e5e5;
+}
+
+.filter-title {
+  font-size: 18px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+/*  GRID DE LOS FILTROS */
+.filters-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.full {
+  grid-column: span 2;
+}
+
+
+/* Campos mascompactos */
+.filters-card mat-form-field {
+  transform: scale(0.9);
+  transform-origin: top left;
+}
+
+/* Bordes suaves  */
+.filters-card .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 12px !important;
+}
+
+/* Outline claro */
+.filters-card .mat-form-field-outline-start,
+.filters-card .mat-form-field-outline-end {
+  border-color: #bfbfbf !important;
+}
+
+/* Efecto al enfocar */
+.filters-card .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  border-color: #3f51b5 !important;
+}
+
+.filters-card input,
+.filters-card .mat-select-value {
+  font-size: 0.8rem !important;
+}
+
+/*BOTONES*/
+.filter-buttons {
+  grid-column: span 2;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+}
+
+.filter-buttons button {
+  border-radius: 10px !important;
+  padding: 4px 10px !important;
+  font-size: 0.8rem !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+/* SECCION TABLA*/
+.table-section {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Boton nuevo producto */
+.top-action button {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+/* TABLA */
+.custom-table {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  border: 1px solid #e4e4e4;
+}
+
+/* suavizado */
+.custom-table th {
+  background-color: #f7f7f7;
+  font-weight: 600;
+}
+
+.custom-table tr:hover {
+  background: #f0f0f0;
+  transition: 0.2s;
+}
+
+/* PAGINADOR*/
+mat-paginator {
+  margin-top: 12px;
+  border-radius: 12px;
+}

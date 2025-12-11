@@ -1,0 +1,9 @@
+<mat-card>
+  <mat-card-title>{{data.title || 'Detalle'}}</mat-card-title>
+  <mat-card-content>
+    <pre style="white-space:pre-wrap">{{data.entity | json}}</pre>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-button color="primary" (click)="close()">Cerrar</button>
+  </mat-card-actions>
+</mat-card>

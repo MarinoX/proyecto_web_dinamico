@@ -53,11 +53,11 @@ public class RegistroService {
 
     public boolean delete(Integer id) {
         return registroRepository.findById(id).map(registro -> {
-            // revert stock effect
+            
             Producto producto = registro.getProducto();
             if (producto != null) {
                 int efecto = effectForTipo(registro.getTipo(), registro.getCantidad());
-                // revert -> subtract efecto
+                
                 producto.setStock(safeStock(producto.getStock() - efecto));
                 productoRepository.save(producto);
             }
@@ -68,7 +68,7 @@ public class RegistroService {
 
     @Transactional
     protected RegistroDTO saveAndAdjustStock(Registro existing, RegistroDTO dto) {
-        // existing == null -> create; otherwise update existing
+        
         Integer newProductoId = dto.getProductoId();
         Integer newCantidad = dto.getCantidad() != null ? dto.getCantidad() : Integer.valueOf(0);
         String newTipo = dto.getTipo();
@@ -78,7 +78,17 @@ public class RegistroService {
             newProducto = productoRepository.findById(newProductoId).orElse(null);
         }
 
-        // revert existing effect if present
+        // Validar stock suficiente para salidas
+        if (newProducto != null && isSalida(newTipo)) {
+            int stockActual = newProducto.getStock() != null ? newProducto.getStock() : 0;
+            if (stockActual < newCantidad) {
+                throw new IllegalArgumentException(
+                    "Stock insuficiente para el producto '" + newProducto.getNombre() + "': " +
+                    "disponible " + stockActual + ", solicitado " + newCantidad
+                );
+            }
+        }
+
         if (existing != null) {
             Producto oldProducto = existing.getProducto();
             if (oldProducto != null) {
@@ -86,7 +96,7 @@ public class RegistroService {
                 oldProducto.setStock(safeStock(oldProducto.getStock() - oldEfecto));
                 productoRepository.save(oldProducto);
             }
-            // update fields
+           
             existing.setCantidad(newCantidad);
             existing.setTipo(newTipo);
             existing.setFecha(LocalDateTime.now());
@@ -94,7 +104,7 @@ public class RegistroService {
 
             Registro saved = registroRepository.save(existing);
 
-            // apply new effect
+          
             if (newProducto != null) {
                 int newEfecto = effectForTipo(newTipo, newCantidad);
                 newProducto.setStock(safeStock(newProducto.getStock() + newEfecto));
@@ -103,7 +113,7 @@ public class RegistroService {
             return toDTO(saved);
         }
 
-        // create new registro
+       
         Registro registro = new Registro();
         registro.setCantidad(newCantidad);
         registro.setTipo(newTipo);
@@ -127,8 +137,13 @@ public class RegistroService {
         String t = tipo.trim().toLowerCase();
         if (t.equals("entrada") || t.equals("in") || t.equals("ingreso")) return qty;
         if (t.equals("salida") || t.equals("out") || t.equals("egreso")) return -qty;
-        // default: treat unknown as 0
         return 0;
+    }
+
+    private boolean isSalida(String tipo) {
+        if (tipo == null) return false;
+        String t = tipo.trim().toLowerCase();
+        return t.equals("salida") || t.equals("out") || t.equals("egreso");
     }
 
     private Integer safeStock(Integer stock) {

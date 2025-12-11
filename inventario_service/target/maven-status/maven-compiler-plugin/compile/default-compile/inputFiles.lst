@@ -2,12 +2,17 @@ C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\m
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\config\WebConfig.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\controller\CategoriaController.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\controller\ProductoController.java
+C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\controller\RegistroController.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\Main.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\model\dto\CategoriaDTO.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\model\dto\ProductoDTO.java
+C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\model\dto\RegistroDTO.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\model\entity\Categoria.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\model\entity\Producto.java
+C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\model\entity\Registro.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\repository\CategoriaRepository.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\repository\ProductoRepository.java
+C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\repository\RegistroRepository.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\service\CategoriaService.java
 C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\service\ProductService.java
+C:\Users\joms_\OneDrive\Escritorio\prueba proyecto\Back\inventario_service\src\main\java\mx\uam\service\RegistroService.java

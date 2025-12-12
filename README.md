@@ -1,7 +1,9 @@
 # Sistema de Gestión de Inventario
 
 Materia: Programacion Web Dinamico
+
 Alumno: Marin Sanchez Jose Abraham
+
 Matricula : 2233030514
 
 ------

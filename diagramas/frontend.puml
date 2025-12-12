@@ -1,0 +1,44 @@
+@startuml inventario_frontend_architecture
+left to right direction
+
+package "App" {
+
+  package "Components"{
+    class DashboardComponent
+    class CategoriasComponent
+    class ProductosComponent
+    class RegistrosComponent
+  }
+
+  package "Services"{
+    class CategoriaService
+    class ProductoService
+    class RegistroService
+  }
+
+  package "Models"{
+    class CategoriaModel
+    class ProductoModel
+    class RegistroModel
+  }
+
+  package "Shared"{
+    class ViewDialogComponent
+    class AppRoutingModule
+  }
+
+  DashboardComponent --> ProductoService
+  CategoriasComponent --> CategoriaService
+  ProductosComponent --> ProductoService
+  RegistrosComponent --> RegistroService
+
+  CategoriaService --> CategoriaModel
+  ProductoService --> ProductoModel
+  RegistroService --> RegistroModel
+
+  CategoriasComponent --> ViewDialogComponent
+  ProductosComponent --> ViewDialogComponent
+  RegistrosComponent --> ViewDialogComponent
+}
+
+@enduml

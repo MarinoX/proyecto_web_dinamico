@@ -1,0 +1,54 @@
+@startuml inventario_service_architecture
+left to right direction
+
+package "Controller" {
+  class CategoriaController
+  class ProductoController
+  class RegistroController
+}
+
+package "Service"{
+  class CategoriaService
+  class ProductoService
+  class RegistroService
+}
+
+package "Repository" {
+  class CategoriaRepository
+  class ProductoRepository
+  class RegistroRepository
+}
+
+package "Model - Entity"{
+  class Categoria
+  class Producto
+  class Registro
+}
+
+package "Model - DTO"{
+  class CategoriaDTO
+  class ProductoDTO
+  class RegistroDTO
+}
+
+
+CategoriaController --> CategoriaService
+ProductoController --> ProductoService
+RegistroController --> RegistroService
+
+CategoriaService --> CategoriaRepository
+ProductoService --> ProductoRepository
+RegistroService --> RegistroRepository
+
+CategoriaRepository --> Categoria
+ProductoRepository --> Producto
+RegistroRepository --> Registro
+
+CategoriaService --> CategoriaDTO
+ProductoService --> ProductoDTO
+RegistroService --> RegistroDTO
+
+Categoria "1" -- "*" Producto: contiene
+Producto "1" -- "*" Registro: genera
+
+@enduml

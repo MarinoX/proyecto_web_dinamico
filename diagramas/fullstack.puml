@@ -1,0 +1,15 @@
+@startuml 
+
+actor Usuario
+participant Frontend
+participant Backend
+database BD
+
+Usuario --> Frontend: interactúa
+Frontend --> Backend: peticiones HTTP
+Backend --> BD: consultas SQL
+BD --> Backend: datos
+Backend --> Frontend: respuesta
+Frontend --> Usuario: muestra
+
+@enduml

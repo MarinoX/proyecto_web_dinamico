@@ -47,8 +47,26 @@ public class RegistroService {
 
     public RegistroDTO update(Integer id, RegistroDTO dto) {
         return registroRepository.findById(id)
-                .map(existing -> saveAndAdjustStock(existing, dto))
+                .map(existing -> updatePartial(existing, dto))
                 .orElse(null);
+    }
+    
+    @Transactional
+    protected RegistroDTO updatePartial(Registro existing, RegistroDTO dto) {
+        // Solo actualiza campos que NO son null 
+        if (dto.getProductoId() != null) {
+            Producto producto = productoRepository.findById(dto.getProductoId()).orElse(null);
+            existing.setProducto(producto);
+        }
+        if (dto.getCantidad() != null) {
+            existing.setCantidad(dto.getCantidad());
+        }
+        if (dto.getTipo() != null) {
+            existing.setTipo(dto.getTipo());
+        }
+
+        Registro updated = registroRepository.save(existing);
+        return toDTO(updated);
     }
 
     public boolean delete(Integer id) {
@@ -70,7 +88,7 @@ public class RegistroService {
     protected RegistroDTO saveAndAdjustStock(Registro existing, RegistroDTO dto) {
         
         Integer newProductoId = dto.getProductoId();
-        Integer newCantidad = dto.getCantidad() != null ? dto.getCantidad() : Integer.valueOf(0);
+        Integer newCantidad = dto.getCantidad() != null ? dto.getCantidad() : 0;
         String newTipo = dto.getTipo();
 
         Producto newProducto = null;

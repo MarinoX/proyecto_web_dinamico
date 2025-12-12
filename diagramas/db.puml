@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+
+entity Categorias {
+  id_categoria: INT
+  nombre: VARCHAR(30)
+  descripcion: VARCHAR(100)
+}
+
+entity Productos {
+  id_producto: INT
+  nombre: VARCHAR(45)
+  descripcion: VARCHAR(100)
+  precio: DECIMAL(10,2)
+  stock: INT
+}
+
+entity RegistrosStock {
+  id_registro: INT
+  cantidad: INT
+  tipo: VARCHAR(10)
+  fecha: TIMESTAMP
+}
+
+Categorias "1" -- "*" Productos
+Productos "1" -- "*" RegistrosStock
+@enduml

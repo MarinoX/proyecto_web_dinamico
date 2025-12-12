@@ -8,7 +8,9 @@ Matricula : 2233030514
 
 ------
 
-Sistema completo de inventario con backend en **Spring Boot** y frontend hecho en **Angular**, integrados en una sola aplicación. Solo es necesario ejecutar el backend para probar tanto el la documentacion swagger como la UI.
+Sistema completo de inventario con backend en **Spring Boot** y frontend hecho en **Angular**, integrados en una sola aplicación. Solo es necesario ejecutar el backend para probar tanto la documentacion swagger como la UI.
+
+**NOTA: ES FUNDAMENENTAL LEER ESTE DOCUMENTO PARA LA CORRECTA EJECUCION DEL SISTEMA**
 
 ## Requisitos Previos
 
@@ -26,20 +28,20 @@ Sistema completo de inventario con backend en **Spring Boot** y frontend hecho e
 
 2. **Ejecutar el script de usuario** ubicado en `sql/usuario.sql` para crear el usuario 'pruebas':
    ```sql
-   SOURCE sql/usuario.sql;
+   SOURCE usuario.sql;
    ```
 
 **Es fundamental la creacion del usuario con el script para poder ejecutar el proyecto o sino editar el application properties con su usuario personal**
 
 3. **Ejecutar el script de estructura**
    ```sql
-   SOURCE sql/base.sql;
+   SOURCE base.sql;
    ```
    Este script crea la base de datos `inventario` y todas las tablas necesarias.
 
 4. **Opcional: Poblar con datos de prueba** 
    ```sql
-   SOURCE sql/poblar.sql;
+   SOURCE poblar.sql;
    ```
    Este script inserta 3 categorias y 10 productos de ejemplo para pruebas.
 

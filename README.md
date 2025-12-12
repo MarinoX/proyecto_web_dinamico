@@ -8,9 +8,9 @@ Matricula : 2233030514
 
 ------
 
-Sistema completo de inventario con backend en **Spring Boot** y frontend hecho en **Angular**, integrados en una sola aplicación. Solo es necesario ejecutar el backend para probar tanto la documentacion swagger como la UI.
-
 **NOTA: ES FUNDAMENENTAL LEER ESTE DOCUMENTO PARA LA CORRECTA EJECUCION DEL SISTEMA**
+
+Sistema completo de inventario con backend en Spring Boot y frontend hecho en Angular, integrados en una sola aplicación. Solo es necesario ejecutar el backend para probar tanto la documentacion swagger como la UI.
 
 ## Requisitos Previos
 
@@ -21,7 +21,7 @@ Sistema completo de inventario con backend en **Spring Boot** y frontend hecho e
 
 ## Configuración de la Base de Datos
 
-1. **Loguearse en MySQL como root** desde la terminal:
+1. Loguearse en MySQL como root desde la terminal:
    ```bash
    mysql -u root -p
    ```
@@ -33,7 +33,7 @@ Sistema completo de inventario con backend en **Spring Boot** y frontend hecho e
 
 **Es fundamental la creacion del usuario con el script para poder ejecutar el proyecto o sino editar el application properties con su usuario personal**
 
-3. **Ejecutar el script de estructura**
+3. **Ejecutar el script de creacion de la base de datos**
    ```sql
    SOURCE base.sql;
    ```
